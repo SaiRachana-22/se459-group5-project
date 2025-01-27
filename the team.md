@@ -12,3 +12,6 @@ _Sharia Zainab_
 
 My name is Sharia Zainab, and I am currently pursuing a Master's in Computer Science. This project is part of my coursework for SE459, where I am developing a rogue-like game as part of a practical exercise in game mechanics and Agile methodologies.
 
+_Pavan Boda_
+
+I’m Pavan Boda currently pursing masters in computer science . I’ve worked as a Program Analyst at Cognizant for a year, focusing on building scalable applications. My expertise includes JavaScript, React, Node.js, and MongoDB. I’m passionate about creating efficient and user-friendly solutions. Currently, I'm enhancing my skills in cloud computing and DevOps. I aim to expand my knowledge in machine learning and contribute to open-source projects. I love learning new technologies and exploring innovative solutions
