@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 import se459.rogue_data.Dungeon;
 import se459.rogue_data.Player;
+import se459.rogue_data.Monster;
 import se459.rogue_ui.GameRenderer;
 
 import java.io.ByteArrayOutputStream;
@@ -18,7 +19,7 @@ public class GameRendererTest {
 
     @Before
     public void setUp() {
-        System.setOut(new PrintStream(outputStream)); // Redirect System.out
+        System.setOut(new PrintStream(outputStream)); // Redirect System.out for capturing output
     }
 
     @After
@@ -30,29 +31,32 @@ public class GameRendererTest {
     public void testRenderDisplaysDungeonAndPlayer() {
         Dungeon dungeon = new Dungeon(10, 5);
         Player player = new Player(2, 2);
-        String gameMessages = "Welcome!";
-        String playerStats = "Hero | Level: 1 | Score: 0";
+        Monster monster = new Monster(4, 4, "Emu");
+        String gameMessages = "Welcome to the Dungeons of Doom!";
+        String playerStats = "Health: 20 | Level: 1 | Experience: 0";
 
-        GameRenderer.render(dungeon, player, gameMessages, playerStats);
+        GameRenderer.render(dungeon, player, monster, gameMessages, playerStats);
         String output = outputStream.toString();
 
-        // Check if dungeon contains walls and player
+        // Check if dungeon contains walls, player, and monster
         assertTrue(output.contains("#")); // Walls should be present
         assertTrue(output.contains("@")); // Player should be rendered
+        assertTrue(output.contains("E")); // Monster should be rendered
     }
 
     @Test
     public void testRenderDisplaysGameMessagesAndStats() {
         Dungeon dungeon = new Dungeon(10, 5);
-        Player player = new Player(3, 3);
+        Player player = new Player(2, 2);
+        Monster monster = new Monster(4, 2, "Emu");
         String gameMessages = "You move up!";
-        String playerStats = "Rogue | Level: 1 | Score: 0";
+        String playerStats = "Health: 20 | Level: 1 | Experience: 0";
 
-        GameRenderer.render(dungeon, player, gameMessages, playerStats);
+        GameRenderer.render(dungeon, player, monster, gameMessages, playerStats);
         String output = outputStream.toString();
 
         // Check if messages and stats are displayed
         assertTrue(output.contains("You move up!"));
-        assertTrue(output.contains("Rogue | Level: 1 | Score: 0"));
+        assertTrue(output.contains("Health: 20 | Level: 1 | Experience: 0"));
     }
 }
