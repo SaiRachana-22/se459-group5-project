@@ -3,10 +3,15 @@ package se459.rogue_data;
 public class Player {
  
     private int x, y;
- 
+    private int level;
+    private int experience;
+
+
     public Player(int startX, int startY) {
         this.x = startX;
         this.y = startY;
+        this.level = 1;
+        this.experience = 0;
     }
  
     public String move(char direction, Dungeon dungeon) {
@@ -33,6 +38,15 @@ public class Player {
             };
         } else {
             return "You hit a wall!";
+        }
+    }
+    
+    public void gainExperience(int xp) {
+        experience += xp;
+        if (experience >= 10) {
+            level++;
+            experience = 0;
+            System.out.println("You leveled up! Level: " + level);
         }
     }
  

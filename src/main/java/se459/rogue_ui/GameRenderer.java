@@ -2,41 +2,46 @@ package se459.rogue_ui;
 
 import se459.rogue_data.Dungeon;
 import se459.rogue_data.Player;
+import se459.rogue_data.Monster;
 
 public class GameRenderer {
 
-    public static void render(Dungeon dungeon, Player player, String gameMessages, String playerStats) {
-        clearScreen(); // Clear the screen before rendering
-
-        // Display game messages at the top
+    public static void render(Dungeon dungeon, Player player, Monster monster, String gameMessages,
+            String playerStats) {
+        clearScreen();
         System.out.println(gameMessages);
 
-        // Display the dungeon grid
         char[][] grid = dungeon.getGrid();
+        char[][] displayGrid = new char[grid.length][grid[0].length];
 
+        // Copy the base dungeon grid
         for (int y = 0; y < grid.length; y++) {
-            for (int x = 0; x < grid[y].length; x++) {
-                if (x == player.getX() && y == player.getY()) {
-                    System.out.print("@"); // Player
-                } else {
-                    System.out.print(grid[y][x]);
-                }
+            System.arraycopy(grid[y], 0, displayGrid[y], 0, grid[y].length);
+        }
+
+        // Place the monster on the display grid if it's alive
+        if (monster != null) {
+            displayGrid[monster.getY()][monster.getX()] = 'E';
+        }
+
+        // Place the player, overriding any tile
+        displayGrid[player.getY()][player.getX()] = '@';
+
+        // Print the dungeon with the updated display grid
+        for (int y = 0; y < displayGrid.length; y++) {
+            for (int x = 0; x < displayGrid[y].length; x++) {
+                System.out.print(displayGrid[y][x]);
             }
             System.out.println();
         }
 
-        // Display player stats at the bottom
         System.out.println("Player Stats: " + playerStats);
     }
 
     private static void clearScreen() {
         try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                System.out.print("\033[H\033[2J"); // ANSI escape code for clearing console
-                System.out.flush();
-            }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
         } catch (Exception e) {
             System.out.println("Failed to clear screen");
         }
