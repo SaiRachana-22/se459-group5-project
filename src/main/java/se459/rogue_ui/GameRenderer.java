@@ -6,8 +6,7 @@ import se459.rogue_data.Monster;
 
 public class GameRenderer {
 
-    public static void render(Dungeon dungeon, Player player, Monster monster, String gameMessages,
-            String playerStats) {
+    public static void render(Dungeon dungeon, Player player, Monster monster, String gameMessages, String playerStats) {
         clearScreen();
         System.out.println(gameMessages);
 
@@ -20,8 +19,12 @@ public class GameRenderer {
         }
 
         // Place the monster on the display grid if it's alive
-        if (monster != null) {
+        if (monster != null && monster.isAlive()) {
             displayGrid[monster.getY()][monster.getX()] = 'E';
+        }
+        else {
+            displayGrid[monster.getY()][monster.getX()] = '.';
+            dungeon.setTile(monster.getX(), monster.getY(), '.');
         }
 
         // Place the player, overriding any tile
