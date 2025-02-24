@@ -35,4 +35,24 @@ public class PlayerTest {
         assertEquals(5, player.getY()); // Position should remain the same
     }
  
+    @Test
+    public void testPlayerAttack() {
+        Player player = new Player(2, 2);
+        assertEquals(3, player.attack());
+    }
+ 
+    @Test
+    public void testTakeDamage() {
+        Player player = new Player(2, 2);
+        player.takeDamage(5);
+        assertTrue(player.isAlive());
+    }
+ 
+    @Test
+    public void testGainExperienceAndLevelUp() {
+        Player player = new Player(2, 2);
+        player.gainExperience(10);
+        assertEquals(2, player.getStats().contains("Level: 2") ? 2 : 1);
+    }
+ 
 }
