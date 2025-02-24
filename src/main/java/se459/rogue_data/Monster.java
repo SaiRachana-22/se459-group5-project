@@ -26,4 +26,12 @@ public class Monster {
     public String getName() {
         return name;
     }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+    }
 }
