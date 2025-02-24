@@ -1,12 +1,12 @@
 package se459.rogue_data;
-
+ 
 public class Monster {
     private int x;
     private int y;
     private String name;
     private int health;
     private int attackPower;
-
+ 
     public Monster(int x, int y, String name) {
         this.x = x;
         this.y = y;
@@ -14,24 +14,28 @@ public class Monster {
         this.health = 10; // Example health value
         this.attackPower = 2; // Example attack power value
     }
-
+ 
     public int getX() {
         return x;
     }
-
+ 
     public int getY() {
         return y;
     }
-
+ 
     public String getName() {
         return name;
     }
-
+ 
     public boolean isAlive() {
         return health > 0;
     }
-
+ 
     public void takeDamage(int damage) {
         health -= damage;
+    }
+ 
+    public int attack() {
+        return attackPower;
     }
 }
