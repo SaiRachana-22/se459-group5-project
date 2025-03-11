@@ -1,16 +1,26 @@
 package se459.rogue_data;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Dungeon {
     private final int width;
     private final int height;
     private char[][] grid;
-    private Monster monster; // Change to a single monster instance
+    private Monster monster;
+    private List<Item> items;
+    private Random random;
+
 
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
         this.grid = new char[height][width];
         this.monster = null; // Initialize to null
+        this.items = new ArrayList<>();
+        this.random = new Random();
+        generateRandomItems();
 
         // Initialize the dungeon with walls and empty spaces
         for (int i = 0; i < height; i++) {
@@ -22,6 +32,13 @@ public class Dungeon {
                 }
             }
         }
+    }
+
+    private void generateRandomItems() {
+        items.add(new Weapon("Sword", 10, 12,5));
+        items.add(new Armor("Leather Armor", 15, 13, 2));
+        items.add(new Food("Bread", 11, 7, 20));
+        items.add(new Gold(10, 17, 8));
     }
 
     // Add a monster at a specified position
@@ -38,6 +55,10 @@ public class Dungeon {
     // Get the single monster
     public Monster getMonster() {
         return monster; // Return the monster instance
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     // Check if a position is valid (not a wall and within bounds)
