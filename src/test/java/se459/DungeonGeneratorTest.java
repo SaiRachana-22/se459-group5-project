@@ -12,14 +12,14 @@ public class DungeonGeneratorTest {
 
     @Before
     public void setUp() {
-        dungeon = DungeonGenerator.generate(20, 10);
+        dungeon = DungeonGenerator.generate(50, 20);
     }
 
     @Test
     public void testFirstRoomGeneration() {
         boolean hasFloor = false;
-        for (int y = 0; y < 10; y++) {
-            for (int x = 0; x < 20; x++) {
+        for (int y = 0; y < 20; y++) {
+            for (int x = 0; x < 50; x++) {
                 if (dungeon.getTile(x, y) == '.') {
                     hasFloor = true;
                     break;
@@ -32,8 +32,8 @@ public class DungeonGeneratorTest {
     @Test
     public void testPassageExists() {
         boolean hasPassage = false;
-        for (int y = 0; y < 10; y++) {
-            for (int x = 0; x < 20; x++) {
+        for (int y = 0; y < 20; y++) {
+            for (int x = 0; x < 50; x++) {
                 if (dungeon.getTile(x, y) == ' ') {
                     hasPassage = true;
                     break;
