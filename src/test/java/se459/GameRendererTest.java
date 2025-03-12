@@ -19,44 +19,43 @@ public class GameRendererTest {
 
     @Before
     public void setUp() {
-        System.setOut(new PrintStream(outputStream)); // Redirect System.out for capturing output
+        System.setOut(new PrintStream(outputStream)); // Capture console output
     }
 
     @After
     public void tearDown() {
-        System.setOut(originalOut); // Restore original System.out
+        System.setOut(originalOut); // Restore original output stream
     }
 
     @Test
     public void testRenderDisplaysDungeonAndPlayer() {
-        Dungeon dungeon = new Dungeon(10, 5);
+        Dungeon dungeon = new Dungeon(50, 20);
         Player player = new Player(2, 2);
         Monster monster = new Monster(4, 4, "Emu");
         String gameMessages = "Welcome to the Dungeons of Doom!";
-        String playerStats = "Health: 20 | Level: 1 | Experience: 0";
+        String playerStats = "HP: 20 | LVL: 1 | XP: 0";
 
         GameRenderer.render(dungeon, player, monster, gameMessages, playerStats);
         String output = outputStream.toString();
 
         // Check if dungeon contains walls, player, and monster
-        assertTrue(output.contains("#")); // Walls should be present
-        assertTrue(output.contains("@")); // Player should be rendered
-        assertTrue(output.contains("E")); // Monster should be rendered
-    }
+        assertTrue(output.contains("#"));  // Walls should be present
+        assertTrue(output.contains("@")); 
+        assertTrue(output.contains("E"));     }
 
     @Test
     public void testRenderDisplaysGameMessagesAndStats() {
-        Dungeon dungeon = new Dungeon(10, 5);
+        Dungeon dungeon = new Dungeon(50, 20);
         Player player = new Player(2, 2);
         Monster monster = new Monster(4, 2, "Emu");
         String gameMessages = "You move up!";
-        String playerStats = "Health: 20 | Level: 1 | Experience: 0";
+        String playerStats = "HP: 20 | LVL: 1 | XP: 0";
 
         GameRenderer.render(dungeon, player, monster, gameMessages, playerStats);
         String output = outputStream.toString();
 
         // Check if messages and stats are displayed
-        assertTrue(output.contains("You move up!"));
-        assertTrue(output.contains("Health: 20 | Level: 1 | Experience: 0"));
+        assertTrue(output.contains(gameMessages));
+        assertTrue(output.contains(playerStats));
     }
 }
