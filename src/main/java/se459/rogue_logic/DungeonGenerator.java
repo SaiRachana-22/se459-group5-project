@@ -23,10 +23,10 @@ public class DungeonGenerator {
  
     // Creates a random room inside the dungeon
     private static Room createRoom(Dungeon dungeon, int width, int height) {
-        int roomWidth = 7;  // Fixed width for simplicity
-        int roomHeight = 4;  // Fixed height for simplicity
-        int x = 3;  // Room x position (starting point)
-        int y = 2;  // Room y position (starting point)
+        int roomWidth = 15;  // Fixed width for simplicity
+        int roomHeight = 12;  // Fixed height for simplicity
+        int x = 7;  // Room x position (starting point)
+        int y = 6;  // Room y position (starting point)
  
         return new Room(x, y, roomWidth, roomHeight);
     }
