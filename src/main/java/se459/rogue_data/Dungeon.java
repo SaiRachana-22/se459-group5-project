@@ -12,7 +12,6 @@ public class Dungeon {
     private List<Item> items;
     private Random random;
 
-
     public Dungeon(int width, int height) {
         this.width = width;
         this.height = height;
@@ -35,10 +34,12 @@ public class Dungeon {
     }
 
     private void generateRandomItems() {
-        items.add(new Weapon("Sword", 10, 12,5));
+        items.add(new Weapon("Sword", 10, 12, 5));
         items.add(new Armor("Leather Armor", 15, 13, 2));
         items.add(new Food("Bread", 11, 7, 20));
         items.add(new Gold(10, 17, 8));
+        items.add(new Scroll("Enchant Armor Scroll", 19, 14, "Glow Armor"));
+        items.add(new Potion("Healing Potion", 12, 15, 10));
     }
 
     // Add a monster at a specified position
