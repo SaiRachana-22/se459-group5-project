@@ -88,8 +88,15 @@ public class Player {
     public void pickUpItem(Item item) {
         if (item instanceof Gold) {
             gold += ((Gold) item).getAmount();
-        } else {
+        } 
+        else {
             pack.add(item);
+            if (item instanceof Weapon) {
+                equipWeapon((Weapon) item);
+            }
+            else if (item instanceof Armor) {
+                equipArmor((Armor) item);
+            }
         }
     }
 
@@ -144,3 +151,4 @@ public class Player {
         return y;
     }
 }
+
